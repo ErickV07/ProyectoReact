@@ -2,13 +2,14 @@ require('../app');
 import React, { useEffect } from 'react'
 import ReactDOM from 'react-dom'
 import '../variables'
-import Dashboard from '../components/Admin/Dashboard'
-import Usuario from '../components/Admin/Usuario'
 import { createStore } from 'redux';
 import rootReducer from '../redux/reducers/index'
 import { Provider, useDispatch, useSelector } from 'react-redux'
 import rootAction from '../redux/actions/index'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import Dashboard from '../components/Admin/Dashboard'
+import Usuario from '../components/Admin/Usuario'
+import Leads from '../components/Admin/Leads'
 
 //create reducer
 const myStore = createStore(
@@ -35,6 +36,7 @@ function App() {
 						<Switch>
 							<Route exact path='/dashboard' component={Dashboard} />
 							<Route path='/usuarios' component={Usuario} />
+							<Route path='/lead/list' component={Leads} />
 						</Switch>
 					</div>
 

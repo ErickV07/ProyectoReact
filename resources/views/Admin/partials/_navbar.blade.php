@@ -131,7 +131,7 @@
                 </div>
                 <a class="dropdown-item" href="general.html">My Profile</a>
                 <a class="dropdown-item" href="general.html">Account Settings</a>
-                <a class="dropdown-item" href="login.html">Logout</a>
+                <a class="dropdown-item" href="/logout">Salir</a>
             </div>
         </li>
 

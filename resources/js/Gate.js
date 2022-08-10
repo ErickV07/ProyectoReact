@@ -19,20 +19,20 @@ export default class Gate{
     }
     //roles
     isSuperAdmin(){
-        return this.user.type === 'SuperAdmin';
+        return this.user.tipo_usuario === 'SuperAdmin';
     }
     isAdmin(){
-        return this.user.type === 'admin';
+        return this.user.tipo_usuario === 'admin';
     }
     //roles
     isUser(){
-        return this.user.type === 'user';
+        return this.user.tipo_usuario === 'user';
     }
     isEmprendedor(){
-        return this.user.type === 'Emprendedor';
+        return this.user.tipo_usuario === 'Emprendedor';
     }    
     isAdminOrUser(){
-        if(this.user.type === 'user' || this.user.type === 'admin'){
+        if(this.user.tipo_usuario === 'user' || this.user.tipo_usuario === 'admin'){
             return true;
         }
     }
