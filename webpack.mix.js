@@ -12,9 +12,9 @@ const mix = require('laravel-mix');
  */
 
  mix.js('resources/js/app.js', 'public/js','resources/assets/js/app.js', 'public/js')
- .react().js('resources/js/views/Principal.js', 'public/js/views').react()
- .react().js('resources/js/views/Dashboard.js', 'public/js/views').react()
- .react().js('resources/js/views/Login.js', 'public/js/views').react()
+ .react().js('resources/js/views/Principal.js', 'public/js/views').react()//La vista cliente
+ .react().js('resources/js/views/Dashboard.js', 'public/js/views').react()//La vista administrativa
+ .react().js('resources/js/views/Login.js', 'public/js/views').react()//La vista de login
  .sass('resources/sass/app.scss', 'public/css', [
  //
  ]);

@@ -8,12 +8,13 @@
     <title> @yield('title') </title>
     <!-- plugins:css -->
     <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
-    <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/font-awesome.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/feathericon.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/plugins/morris/morris.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
-    
+        <!-- plugins:css -->
+        <link rel="stylesheet" href="{{asset('assets/css/login.css')}}">
+        <link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="{{asset('assets/images/favicon.ico')}}" />
     <link href="{{ asset('assets/global/iziToast/css/iziToast.css') }}" rel="stylesheet">
@@ -26,28 +27,26 @@
         @include('Admin.partials._sidebar')
         <div class="">
           <div class="page-wrapper">
-            <div class="content container-fluid">
             @yield('container')
-          </div>
           </div>
           @include('Admin.partials._footer')
         </div>
       </div>
     </div>
     <script src="{{asset('assets/vendors/js/vendor.bundle.base.js')}}"></script>
-    
+    <!-- inject:js -->
+    <script src="{{asset('assets/js/off-canvas.js')}}"></script>
+    <script src="{{asset('assets/js/hoverable-collapse.js')}}"></script>
+    <script src="{{asset('assets/js/misc.js')}}"></script>
+    <script src="{{ asset('assets/global/iziToast/js/iziToast.js') }}"></script>
     <!-- inject:js -->
     <script src="{{asset('assets/js/off-canvas.js')}}"></script>
     <script src="{{asset('assets/js/hoverable-collapse.js')}}"></script>
     <script src="{{asset('assets/js/misc.js')}}"></script>
     <script src="{{asset('assets/global/iziToast/js/iziToast.js') }}"></script>
-
     <script src="{{asset('assets/js/jquery-3.6.0.min.js')}}"></script>
-
     <script src="{{asset('assets/js/bootstrap.bundle.min.js')}}"></script>
-
     <script src="{{asset('assets/plugins/slimscroll/jquery.slimscroll.min.js')}}"></script>
-
     <script src="{{asset('assets/js/script.js')}}"></script>
 
     @include('global_script')

@@ -71,71 +71,57 @@ function Dashboard(props) {
 
     return (
         <React.Fragment>
-            <div className="page-header">
-				<h3 className="page-title">
-					<span className="page-title-icon bg-gradient-primary text-white mr-2">
-						<i className="mdi mdi-home"></i>
-					</span>
-				 	Dashboard
-				</h3>
-			</div>
-			
-            <div className="row animated fadeIn">
-                <div className="col-md-4 stretch-card grid-margin">
-                    <div className="card bg-danger card-img-holder text-white">
-                    <div className="card-body">
-                        <img src="/assets/images/dashboard/circle.svg" className="card-img-absolute" alt="circle-image"/>
-                        <h4 className="font-weight-normal mb-3">Total Leads <i className="mdi mdi-chart-line mdi-24px float-right"></i>
-                        </h4>
-                        <h2 className="mb-5">{state.totalLeads}</h2>
+
+<div class="content container-fluid">
+                <div class="row">
+                    <div class="col-xl-4 col-sm-4 col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="dash-widget-header">
+                                    <span class="dash-widget-icon bg-primary">
+                                        <i class="fe fe-users"></i>
+                                    </span>
+                                    <div class="dash-count">
+                                        <a href="#" class="count-title">User Count</a>
+                                        <a href="#" class="count"> 10,320</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                    <div class="col-xl-4 col-sm-4 col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="dash-widget-header">
+                                    <span class="dash-widget-icon bg-warning">
+                                        <i class="fe fe-phone"></i>
+                                    </span>
+                                    <div class="dash-count">
+                                        <a href="#" class="count-title">Call Duration</a>
+                                        <a href="#" class="count"> 14,628</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div className="col-md-4 stretch-card grid-margin">
-                    <div className="card bg-gradient-info card-img-holder text-white">
-                    <div className="card-body">
-                        <img src="/assets/images/dashboard/circle.svg" className="card-img-absolute" alt="circle-image" />
-                        <h4 className="font-weight-normal mb-3">New Leads This Week <i className="mdi mdi-calendar-text mdi-24px float-right"></i>
-                        </h4>
-                        <h2 className="mb-5">{state.weeklyLeads}</h2>
-                    </div>
-                    </div>
-                </div>
-                <div className="col-md-4 stretch-card grid-margin">
-                    <div className="card bg-green-gradient card-img-holder text-white">
-                    <div className="card-body">
-                        <img src="/assets/images/dashboard/circle.svg" className="card-img-absolute" alt="circle-image" />
-                        <h4 className="font-weight-normal mb-3">New Leads This Month <i className="mdi mdi-calendar-multiple-check mdi-24px float-right"></i>
-                        </h4>
-                        <h2 className="mb-5">{state.monthlyLeads}</h2>
-                    </div>
-                    </div>
-                </div>
-            </div>
-            <div className="row">
-              <div className="col-12 grid-margin">
-                <div className="card">
-                    <div className="card-body animated fadeIn">
-                        <h4 className="card-title">Recent Leads</h4>
-                        <div className="table-responsive">
-                        <table className="table">
-                            <thead>
-                            <tr>
-                                <th> Name </th>
-                                <th> Email </th>
-                                <th> Phone </th>
-                                <th> Progress </th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                                {showRecentLeads()}
-                            </tbody>
-                        </table>
+                    <div class="col-xl-4 col-sm-4 col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="dash-widget-header">
+                                    <span class="dash-widget-icon bg-danger">
+                                        <i class="fe fe-comments"></i>
+                                    </span>
+                                    <div class="dash-count">
+                                        <a href="#" class="count-title">Chat Count</a>
+                                        <a href="#" class="count"> 2,980</a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-              </div>
             </div>
+
         </React.Fragment>
     );
 }

@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import Main from "./layouts/Main";
 import Home from "../components/Cliente/Home";
 import Acerca from "../components/Cliente/Acerca";
+import Prueba from "../components/Example";
 ReactDOM.render(
   <Main>
     <div>
@@ -15,8 +16,9 @@ ReactDOM.render(
                 <div className="col-lg-4 mx-auto">
                   <div>
                     <Switch>
-                      <Route exact path='/home' component={Home} />
+                      <Route exact path='/' component={Home} />
                       <Route path='/acerca' component={Acerca} />
+                      <Route path='/prueba' component={Prueba} />
                     </Switch>
                   </div>
                 </div>

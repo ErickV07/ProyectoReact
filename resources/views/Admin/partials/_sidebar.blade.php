@@ -6,17 +6,18 @@
                       <li class="menu-title">
                       </li>
                       <li class="active">
-                          <a href="index.html"><i class="fe fe-home"></i> <span>Dashboard</span></a>
+                          <a href="/dashboard"><i class="fe fe-home"></i> <span>Dashboard</span></a>
                       </li>
+                      @if(Auth::check() && Auth::user()->tipo_usuario == "admin" || Auth::user()->tipo_usuario == "SuperAdmin")
                       <li class="submenu">
-                          <a href="#"><i class="fe fe-users"></i> <span> Users</span> <span
+                          <a href="#"><i class="fe fe-users"></i> <span> Usuarios</span> <span
                                   class="menu-arrow"></span></a>
                           <ul style="display: none;">
-                              <li><a href="users.html">Users</a></li>
-                              <li><a href="blocked-users.html">Blocked User</a></li>
-                              <li><a href="report-users.html">Report User</a></li>
+                              <li><a href="/usuarios">Usuarios</a></li>
+                              <li><a href="/lead/list">Leads</a></li>
                           </ul>
                       </li>
+                      @endif
                       <li class="submenu">
                           <a href="#"><i class="fe fe-sync"></i> <span> History </span> <span
                                   class="menu-arrow"></span></a>
