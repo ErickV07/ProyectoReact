@@ -4585,7 +4585,7 @@ var Registration = /*#__PURE__*/function (_Component) {
               message: response.data.message
             });
           } else if (response.data.status == 'success') {
-            window.location = "/home";
+            window.location = "/dashboard";
           }
         })["catch"](function (error) {
           _this.setState({

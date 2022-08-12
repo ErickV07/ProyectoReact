@@ -48,5 +48,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/lead/new', 'AdminController@index')->name('NewLead');
     Route::get('/lead/edit/{id}', 'AdminController@index')->name('EditLead');
 
+    Route::get('/usuario/listar', 'AdminController@index')->name('ListarUsuario');
+    Route::get('/usuario/crear', 'AdminController@index')->name('NuevoUsuario');
+    Route::get('/usuario/actualizar/{id}', 'AdminController@index')->name('EditarUsuario');
+
 });
 

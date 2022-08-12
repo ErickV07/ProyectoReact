@@ -1,25 +1,21 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { connect } from 'react-redux';
-import rootAction from '../../redux/actions/index'
+import rootAction from '../../../redux/actions/index'
 import { fadeIn } from 'animate.css'
 import BeatLoader from 'react-spinners/BeatLoader'
-import { showSznNotification} from '../../Helpers'
+import { showSznNotification} from '../../../Helpers'
 import LoadingOverlay from 'react-loading-overlay';
 import SimpleReactValidator from 'simple-react-validator';
 import { Link, useHistory } from 'react-router-dom';
 
-function NewLead(props) {
+function NuevoUsuario(props) {
     const [state, setState] = useState({
-        name: '',
+        nombre: '',
+        tipo_usuario: '',
         email: '',
-        phone: '',
-        address: '',
-        progress: 0,
+        imagen: '',
+        password: '',
         description: '',
-        status: 1,
-        earnings: 0.00,
-        expenses: 0.00,
-        net: 0.00,
         loading: false,
         authUser: props.authUserProp
     });
@@ -34,9 +30,9 @@ function NewLead(props) {
     }));
 
     useEffect(() => {
-        document.title = 'New Lead';
+        document.title = 'Crear Usuario';
 
-        props.setActiveComponentProp('NewLead');
+        props.setActiveComponentProp('NuevoUsuario');
     }, []);
 
     const onChangeHandle = (e) =>{
@@ -56,7 +52,7 @@ function NewLead(props) {
                 loading: true
             });
 
-            axios.post('/api/v1/lead/create', $(e.target).serialize())
+            axios.post('/api/v1/usuario/crear', $(e.target).serialize())
             .then(response => {
                 setState({
                     ...state,
@@ -82,7 +78,7 @@ function NewLead(props) {
                         type : 'success',
                         message : response.data.message
                     });
-                    history.push('/lead/list')
+                    history.push('/usuario/listar')
                 }
             })
             .catch((error) => {
@@ -139,22 +135,21 @@ function NewLead(props) {
                                     <div className="form-group">
                                         <ul className="nav nav-tabs nav-pills c--nav-pills nav-justified">
                                             <li className="nav-item">
-                                                <span className="nav-link btn btn-gradient-primary btn-block active">NEW LEAD</span>
+                                                <span className="nav-link btn btn-gradient-primary btn-block active">NUEVO USUARIO</span>
                                             </li>
                                         </ul>
                                     </div>
-
                                     <div className="form-group">
-                                        <label>Name</label>
+                                        <label>Nombre</label>
                                         <div className="input-group input-group-sm">
                                             <div className="input-group-prepend">
                                                 <span className="input-group-text bg-gradient-success text-white">
-                                                    <i className="mdi mdi-email"></i>
+                                                    <i className="mdi mdi-user"></i>
                                                 </span>
                                             </div>
-                                            <input type="text" className="form-control form-control-sm" id="name" name="name" placeholder="name" value={state.name} onChange={onChangeHandle}/>
+                                            <input type="text" className="form-control form-control-sm" id="name" name="nombre" placeholder="Nombre" value={state.nombre} onChange={onChangeHandle}/>
                                         </div>
-                                        {simpleValidator.current.message('email', state.name, 'required|name')}
+                                        {simpleValidator.current.message('name', state.nombre, 'required|name')}
                                     </div>
 
                                     <div className="form-group">
@@ -169,104 +164,59 @@ function NewLead(props) {
                                         </div>
                                         {simpleValidator.current.message('email', state.email, 'required|email')}
                                     </div>
+
+
                                     <div className="form-group">
-                                        <label>Phone</label>
+                                        <label>Imagen</label>
                                         <div className="input-group input-group-sm">
                                             <div className="input-group-prepend">
                                                 <span className="input-group-text bg-gradient-success text-white">
-                                                    <i className="mdi mdi-phone"></i>
+                                                    <i className="mdi mdi-photo"></i>
                                                 </span>
                                             </div>
-                                            <input type="text" className="form-control form-control-sm" id="phone" name="phone" placeholder="Phone" value={state.phone} onChange={onChangeHandle}/>
+                                            <input type="text" className="form-control form-control-sm" id="imagen" name="imagen" placeholder="Imagen" value={state.imagen} onChange={onChangeHandle}/>
                                         </div>
-                                        {simpleValidator.current.message('phone', state.phone, 'required|phone')}
+                                        {simpleValidator.current.message('imagen', state.imagen, '')}
                                     </div>
-                                    <div className="form-group">
-                                        <label>Address</label>
-                                        <div className="input-group input-group-sm">
-                                            <div className="input-group-prepend">
-                                                <span className="input-group-text bg-gradient-success text-white">
-                                                    <i className="mdi mdi-home"></i>
-                                                </span>
-                                            </div>
-                                            <input type="text" className="form-control form-control-sm" id="address" name="address" placeholder="Address" value={state.address} onChange={onChangeHandle}/>
-                                        </div>
-                                    </div>
-                                    <div className="form-group">
-                                        <label>Description</label>
-                                        <div className="input-group input-group-sm">
-                                            <div className="input-group-prepend">
-                                                <span className="input-group-text bg-gradient-success text-white">
-                                                    <i className="mdi mdi-pencil"></i>
-                                                </span>
-                                            </div>
-                                            <textarea className="form-control form-control-sm" id="description" name="description" placeholder="Description" value={state.description} onChange={onChangeHandle}></textarea>
-                                        </div>
-                                    </div>
+
                                     <div className="form-group">
                                         <hr />
                                     </div>
+
                                     <div className="form-group">
-                                        <label>Progress</label>
-                                        <div className="input-group input-group-sm">
-                                            <div className="input-group-prepend">
-                                                <span className="input-group-text bg-gradient-success text-white">
-                                                    <i className="mdi mdi-music-note-whole"></i>
-                                                </span>
-                                            </div>
-                                            <input type="range" min="0" max="100" className="custom-range form-control form-control-sm" id="progress" name="progress" value={state.progress} onChange={onChangeHandle}/>
-                                        </div>
-                                    </div>
-                                    <div className="form-group">
-                                        <label>Earnings</label>
+                                        <label>Contraseña</label>
                                         <div className="input-group input-group-sm">
                                             <div className="input-group-prepend">
                                                 <span className="input-group-text bg-gradient-success text-white">
                                                     <i className="mdi mdi-currency-usd"></i>
                                                 </span>
                                             </div>
-                                            <input type="number" className="form-control form-control-sm" id="earnings" name="earnings" placeholder="Earnings" value={state.earnings} onChange={onChangeHandle}/>
+                                            <input type="password" className="form-control form-control-sm" id="password" name="password" placeholder="Contra" value={state.password} onChange={onChangeHandle}/>
                                         </div>
                                     </div>
+
+
                                     <div className="form-group">
-                                        <label>Expenses</label>
-                                        <div className="input-group input-group-sm">
-                                            <div className="input-group-prepend">
-                                                <span className="input-group-text bg-gradient-success text-white">
-                                                    <i className="mdi mdi-cart-outline"></i>
-                                                </span>
-                                            </div>
-                                            <input type="number" className="form-control form-control-sm" id="expenses" name="expenses" placeholder="Expenses"value={state.expenses} onChange={onChangeHandle} />
-                                        </div>
-                                    </div>
-                                    <div className="form-group">
-                                        <label>Net</label>
-                                        <div className="input-group input-group-sm">
-                                            <div className="input-group-prepend">
-                                                <span className="input-group-text bg-gradient-success text-white">
-                                                    <i className="mdi mdi-chart-arc"></i>
-                                                </span>
-                                            </div>
-                                            <input type="number" className="form-control form-control-sm" id="net" name="net" placeholder="Net"value={state.net} onChange={onChangeHandle} />
-                                        </div>
-                                    </div>
-                                    <div className="form-group">
-                                        <label>Status</label>
+                                        <label>Rol</label>
                                         <div className="input-group input-group-sm">
                                             <div className="input-group-prepend">
                                                 <span className="input-group-text bg-gradient-success text-white">
                                                     <i className="mdi mdi-clipboard-alert"></i>
                                                 </span>
                                             </div>
-                                            <select className="form-control form-control-sm" id="status" name="status" value={state.status} onChange={onChangeHandle}>
-                                                <option value="1">Active</option>
-                                                <option value="0" >Inactive</option>
+                                            <select className="form-control form-control-sm" id="tipo_usuario" name="tipo_usuario" value={state.tipo_usuario} onChange={onChangeHandle}>
+                                                <option value="SuperAdmin">Super Admin</option>
+                                                <option value="Admin" >Admin</option>
+                                                <option value="User" >Usuario</option>
+                                                <option value="Emprendedor" >Emprendedor</option>
                                             </select>
                                         </div>
                                     </div>
+
+
                                     <div className="form-group text-center">
-                                        <button type="submit" className="btn btn-gradient-primary btn-md mr-2">Save</button>
-                                        <Link to='/lead/list' className="btn btn-inverse-secondary btn-md">Cancel</Link>
+                                        <button type="submit" className="btn btn-gradient-primary btn-md mr-2">Guardar</button>
+                                        <Link to='/usuario/listar' className="btn btn-inverse-secondary btn-md">Cancel</Link>
                                     </div>
                                 </form>
                             </LoadingOverlay>
@@ -294,4 +244,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(NewLead)
+export default connect(mapStateToProps, mapDispatchToProps)(NuevoUsuario)
