@@ -85,7 +85,7 @@ class Registration extends Component {
                         });
                 } else if (response.data.status == 'success') {
                     
-                   window.location = "/home";
+                   window.location = "/dashboard";
                 }
             })
             .catch((error) => {

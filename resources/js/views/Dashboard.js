@@ -30,12 +30,12 @@ function App() {
 
 	return (
 		<React.Fragment>
-			<div>
+			<div className='content container-fluid'>
 				<BrowserRouter>
-					<div>
+					<div className='card-body'>
 						<Switch>
 							<Route exact path='/dashboard' component={Dashboard} />
-							<Route path='/usuarios' component={Usuario} />
+							<Route path='/usuario/listar' component={Usuario} />
 							<Route path='/lead/list' component={Leads} />
 						</Switch>
 					</div>

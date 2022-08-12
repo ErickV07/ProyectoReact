@@ -13,7 +13,7 @@
                           <a href="#"><i class="fe fe-users"></i> <span> Usuarios</span> <span
                                   class="menu-arrow"></span></a>
                           <ul style="display: none;">
-                              <li><a href="/usuarios">Usuarios</a></li>
+                              <li><a href="/usuario/listar">Usuarios</a></li>
                               <li><a href="/lead/list">Leads</a></li>
                           </ul>
                       </li>

@@ -20,7 +20,7 @@ class LeadController extends Controller
         $sortType = $request['sort_type'];
 
         
-        $leads = Lead::where('user_id', $user->id)->orderBy($sortBy, $sortType);
+        $leads = Lead::orderBy($sortBy, $sortType);
 
         if ($request['query'] != '') {
             $leads->where('name', 'like', '%' . $request['query'] . '%');

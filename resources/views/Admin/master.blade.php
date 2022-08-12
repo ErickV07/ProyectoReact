@@ -7,14 +7,16 @@
     <meta property="csrf-token" name="csrf-token" content="{{ csrf_token() }}"/>
     <title> @yield('title') </title>
     <!-- plugins:css -->
-    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="{{asset('assets/img/favicon.png')}}">
     <link rel="stylesheet" href="{{asset('assets/css/font-awesome.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/feathericon.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/plugins/morris/morris.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/vendors/mdi/css/materialdesignicons.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/vendors/css/vendor.bundle.base.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
         <!-- plugins:css -->
         <link rel="stylesheet" href="{{asset('assets/css/login.css')}}">
-        <link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="{{asset('assets/images/favicon.ico')}}" />
     <link href="{{ asset('assets/global/iziToast/css/iziToast.css') }}" rel="stylesheet">

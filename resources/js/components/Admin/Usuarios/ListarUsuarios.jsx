@@ -1,17 +1,17 @@
 import React, {  useState, useEffect } from 'react'
-import LeadItem from './LeadItem'
+import UsuarioItem from './UsuarioItem'
 import Pagination from "react-js-pagination";
 import { useSelector, connect } from 'react-redux';
-import rootAction from '../../redux/actions/index'
+import rootAction from '../../../redux/actions/index'
 import ContentLoader from "react-content-loader" 
 import { fadeIn } from 'animate.css'
-import { showSznNotification} from '../../Helpers'
+import { showSznNotification} from '../../../Helpers'
 import TopControl from './TopControl'
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 
 function LeadList(props) {
-    const [leads, setLeads] = useState([]);
+    const [users, setUsers] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
     const [state, setState] = useState({
@@ -36,9 +36,9 @@ function LeadList(props) {
     //const authUser = props.authUserProp;
     
     useEffect(() => {
-        document.title = 'All Leads';
+        document.title = 'Todos los usuarios';
 
-        props.setActiveComponentProp('LeadList');
+        props.setActiveComponentProp('ListarUsuarios');
 
     }, []);
 
@@ -93,7 +93,7 @@ function LeadList(props) {
 
     const loadData = () => {
         setIsLoading(true);
-        axios.get('/api/v1/lead/list?page='+state.currentPage, {
+        axios.get('/api/v1/usuario/listar?page='+state.currentPage, {
             params: {
                 api_token: authUser.api_token,
                 per_page: state.perPage,
@@ -104,7 +104,7 @@ function LeadList(props) {
         })
         .then(response => {
             setIsLoading(false);
-            setLeads(response.data.message.data);
+            setUsers(response.data.message.data);
             setState({
                 ...state,
                 currentPage: response.data.message.current_page,
@@ -155,17 +155,17 @@ function LeadList(props) {
     const onClickDeleteHandler = (id) => {
 
         confirmAlert({
-            title: 'Confirm to delete',
-            message: 'Are you sure to do this.',
+            title: 'Desea eliminar el usuario',
+            message: 'esta seguro?',
             buttons: [
                 {
-                label: 'Yes',
+                label: 'Si',
                     onClick: () => {
                         setIsLoading(true);
-
-                        axios.post('/api/v1/lead/destroy', {
+                        //ruta de la api en webapi    
+                        axios.post('/api/v1/usuario/eliminar', {
                             api_token: authUser.api_token,
-                            lead_id: id
+                            id: id
                         })
                         .then(response => {
                             setIsLoading(false);
@@ -229,12 +229,11 @@ function LeadList(props) {
 
     const dataTable = () => {
         return isLoading ? skeletonLoader() : 
-        (leads.length == 0 ? <div className="text-center text-gray">
-                                <div className="p-3 font-weight-bold">No hay datos</div>
-                            </div> :
-                           
-        leads.map((lead, i) => {
-            return <LeadItem onClickDeleteHandler={onClickDeleteHandler} obj={lead} key={i} />;
+        (users.length == 0 ? <div className="text-center text-gray">
+                                <div className="p-3 font-weight-bold">No Data Available</div>
+                            </div> : 
+        users.map((lead, i) => {
+            return <UsuarioItem onClickDeleteHandler={onClickDeleteHandler} obj={lead} key={i} />;
         }));
     }
 
