@@ -1,0 +1,17 @@
+:root{
+    --color-1 :#9a55ff;
+    --color-2 :#da8cff;
+}
+
+.form-group {
+    margin: 2%;
+}
+
+.input-group > .form-control:not(:first-child){
+    border: none;
+    border-bottom: 2px solid rgb(184, 184, 184);
+}
+.input-group  .form-control:focus{
+    transition-delay: 0.2s;
+    border-bottom: 2px solid var(--color-1);
+}

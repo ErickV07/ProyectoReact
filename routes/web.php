@@ -13,7 +13,13 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('/clearapp', function () {
+  Artisan::call('config:clear');
+  Artisan::call('cache:clear');
+  Artisan::call('view:clear');
+  Session::flush();
+  return redirect('/');
+});
 
 Auth::routes(['verify' => true]);
 
@@ -23,34 +29,33 @@ Route::get('/', [App\Http\Controllers\ClienteController::class, 'index']);
 //GRUPO DE RUTAS NO PROTEGIDAS
 Route::group(['middleware' => ['guest', 'web']], function () {
 
-  Route::get('*', 'ClienteController@index')->name('404');
+
   //rutas react js sin seguridad
-  Route::get('/', 'ClienteController@index')->name('Inicio');
-  Route::get('/acerca', 'ClienteController@index')->name('Acerca');
-  Route::get('/prueba', 'ClienteController@index')->name('Prueba');
+  Route::get('/acerca', [App\Http\Controllers\ClienteController::class, 'index']);
+  
+  Route::get('/login', [App\Http\Controllers\AuthController::class, 'index']);
+  Route::get('/registration', [App\Http\Controllers\AuthController::class, 'index']);
 
-  Route::get('/login', 'AuthController@index')->name('Login');
-  Route::get('/registration', 'AuthController@index')->name('Registration');
+  Route::post('/login', [App\Http\Controllers\AuthController::class, 'login']);
+  Route::post('/registration', [App\Http\Controllers\AuthController::class, 'signup']);
 
-  Route::post('/login', 'AuthController@login');
-  Route::post('/registration', 'AuthController@signup');
 });
 
 //GRUPO DE RUTAS PROTEGIDAS
 Route::group(['middleware' => ['auth']], function () {
 //rutas react js con seguridad
-    Route::get('/logout', 'AdminController@logout')->name('Logout');
-    Route::get('/dashboard', 'AdminController@index')->name('Dashboard');
-    Route::get('/usuarios', 'AdminController@index')->name('Usuario');
-    
-    
-    Route::get('/lead/list', 'AdminController@index')->name('Leads');
-    Route::get('/lead/new', 'AdminController@index')->name('NewLead');
-    Route::get('/lead/edit/{id}', 'AdminController@index')->name('EditLead');
 
-    Route::get('/usuario/listar', 'AdminController@index')->name('ListarUsuario');
-    Route::get('/usuario/crear', 'AdminController@index')->name('NuevoUsuario');
-    Route::get('/usuario/actualizar/{id}', 'AdminController@index')->name('EditarUsuario');
+    Route::get('/dashboard', [App\Http\Controllers\AdminController::class, 'index']);  
+    Route::post("/logout",[App\Http\Controllers\AdminController::class,"logout"])->name("logout");
+
+    Route::get('/lead/list', [App\Http\Controllers\AdminController::class, 'index']);
+    Route::get('/lead/new', [App\Http\Controllers\AdminController::class, 'index']);
+    Route::get('/lead/edit/{id}', [App\Http\Controllers\AdminController::class, 'index']);
+
+    Route::get('/usuario/listar', [App\Http\Controllers\AdminController::class, 'index']);
+    Route::get('/usuario/crear', [App\Http\Controllers\AdminController::class, 'index']);
+    Route::get('/usuario/actualizar/{id}', [App\Http\Controllers\AdminController::class, 'index']);
+    
 
 });
 

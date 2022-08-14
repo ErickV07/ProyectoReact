@@ -254,7 +254,22 @@ function LeadList(props) {
                         query={state.query}
                     />
                     <div className='szn-list-wrapper bg-gradient-light'>
-                            {dataTable()}
+                    <div className="table-responsive">
+                            <table className="datatable table table-stripped">
+                                <thead>
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <th>Rol</th>
+                                        <th>Email</th>
+                                        <th>Foto</th>
+                                        <th>Funciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {dataTable()}
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                     <div className="pt-3 pb-3">
                         <div className="">

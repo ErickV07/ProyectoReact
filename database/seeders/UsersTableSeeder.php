@@ -21,7 +21,7 @@ class UsersTableSeeder extends Seeder
         DB::table('users')->insert([
             'nombre' => 'Usuario',
             'tipo_usuario' => 'SuperAdmin',
-            'imagen' => 'admin.png',
+            'imagen' => 'admin.jpg',
             'email' => 'demo@example.com',
             'password' => bcrypt('12345'),
             'api_token' => Str::random(80)

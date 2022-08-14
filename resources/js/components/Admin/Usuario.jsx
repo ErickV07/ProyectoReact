@@ -35,7 +35,7 @@ function App() {
                 <BrowserRouter>
                 <div className="page-header">
                 <h3 className="page-title">
-                <span className="page-title-icon bg-gradient-primary text-white mr-2">
+                            <span className="page-title-icon bg-gradient-primary text-white mr-2">
                                 {activeComponent &&
                                 activeComponent == "ListarUsuarios" ? (
                                     <i className="mdi mdi-account-multiple"></i>
@@ -50,15 +50,15 @@ function App() {
                                 )}
                             </span>
                             {activeComponent && activeComponent == "ListarUsuarios"
-                                ? "Todos los usuarios"
+                                ? "Listar usuarios"
                                 : activeComponent &&
                                   activeComponent == "CrearUsuario"
-                                ? "Nuevo Usuario"
+                                ? "Crear usuario"
                                 : activeComponent &&
                                   activeComponent == "EditarUsuario"
                                 ? "Editar Usuario"
                                 : ""}
-                </h3>
+                        </h3>
                 <nav aria-label="breadcrumb">
                             {activeComponent &&
                             activeComponent != "ListarUsuarios" ? (

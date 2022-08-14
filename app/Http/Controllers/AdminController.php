@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Auth;
+use Illuminate\Http\Request;
 use Redirect;
-use Faker\Provider\Lorem;
 
 class AdminController extends Controller
 {
@@ -21,11 +20,17 @@ class AdminController extends Controller
      */
     public function index(Request $request)
     {
-        return view('Admin.dashboard');
+        if (auth()->user()->tipo_usuario == "SuperAdmin") {
+            return view('Admin.dashboard');
+        } else {
+            return view('Cliente.index');
+        }
+
     }
     public function logout(Request $request)
     {
         Auth::logout();
         return redirect('/');
+
     }
 }

@@ -26,16 +26,15 @@ class UsersController extends Controller
         $sortBy = $request['sort_by'];
         $sortType = $request['sort_type'];
 
-        //  $usuarios = User::where('id', $user->id)->orderBy($sortBy, $sortType);
 
-        $usuarios = User::orderBy($sortBy, $sortType);
+        $users = User::orderBy($sortBy, $sortType);
 
         if ($request['query'] != '') {
-            $usuarios->where('nombre', 'like', '%' . $request['query'] . '%');
+            $users->where('nombre', 'like', '%' . $request['query'] . '%');
         }
 
         return response()->json([
-            'message' => $usuarios->paginate($perPage),
+            'message' => $users->paginate($perPage),
             'status' => 'success',
         ]);
     }
@@ -49,7 +48,7 @@ class UsersController extends Controller
             'tipo_usuario' => 'required|string',
             'imagen' => 'string',
             'email' => 'required|email|unique:users,email',
-            'password' => '',
+            'password' => 'required',
         ]);
 
         if ($validate->fails()) {
@@ -57,6 +56,16 @@ class UsersController extends Controller
                 'message' => $validate->errors(),
                 'status' => 'validation-error',
             ], 401);
+        }
+
+        
+        if ($request['imagen']) {
+            $name = time() . '.' . explode('/', explode(':', substr($request['imagen'], 0, strpos ($request['imagen'], ';')))[1])[1];
+            (!file_exists(public_path().'/assets/img/profiles/')) ? mkdir(public_path().'/assets/img/profiles/',0777,true) : null;
+
+            \Image::make($request['imagen'])->save(public_path('assets/img/profiles/') . $name);
+            $request->merge(['imagen' => $name]);
+
         }
 
         $usuarioNuevo = User::create([
@@ -90,23 +99,23 @@ class UsersController extends Controller
 
     public function update(Request $request)
     {
-        $user = User::where('api_token', $request['api_token'])->first();
+        $user = User::where('api_token',$request['api_token'])->first();
 
+        $users = User::where('id',$request['id'])->first();
 
-        $post = $this->users->findOrFail($request['id']);
-
-        if (empty($post)) {
+        if (empty($users)) {
             return response()->json([
-                'message' => 'Lead Not Found',
-                'status' => 'error',
+                'message' => 'Error al actualizar el usuario',
+                'status' => 'error'
             ]);
         }
+
 
         $validate = Validator::make($request->all(), [
             'nombre' => 'required|string',
             'tipo_usuario' => 'required|string',
             'imagen' => 'string',
-            'email' => 'required|email|unique:usuarios,email,' . $post->id . ',id',
+            'email' => 'required|email|unique:users,email,' . $users->id . ',id',
 
         ]);
 
@@ -117,12 +126,32 @@ class UsersController extends Controller
             ], 401);
         }
 
-        $actualizarUsuario = $post->update([
+
+        $currentImagen = $users->imagen;
+
+        if ($request->imagen != $currentImagen) {
+            $name = time().'.' . explode('/', explode(':', substr($request->imagen, 0, strpos($request->imagen, ';')))[1])[1];
+
+            \Image::make($request->imagen)->save(public_path('/assets/img/profiles/').$name);
+            $request->merge(['imagen' => $name]);
+
+            $userPhoto = public_path('/assets/img/profiles/') . $currentImagen;
+            if (file_exists($userPhoto)) {
+                @unlink($userPhoto);
+            }
+
+        }
+        if (!empty($request->password)) {
+            $request->merge(['password' => bcrypt($request['password'])]);
+        }
+
+        $actualizarUsuario = $users->update([
             'nombre' => $request['nombre'],
             'tipo_usuario' => $request['tipo_usuario'],
             'imagen' => $request['imagen'],
             'email' => $request['email'],
             'password' => bcrypt($request->password),
+            'api_token' => $request['api_token'],
         ]);
 
         return response()->json([
@@ -135,7 +164,7 @@ class UsersController extends Controller
     {
         $users = User::where('api_token', $request['api_token'])->first();
 
-        $post = User::find($request['id']);
+        $post = User::FindOrFail($request['id']);
 
         if (empty($post)) {
             return response()->json([
@@ -144,7 +173,19 @@ class UsersController extends Controller
             ]);
         }
 
-        $eliminarUsuario = $post->delete();
+        if(file_exists('/assets/img/profiles/'.$post->imagen) AND !empty($post->imagen)){
+            unlink('/assets/img/profiles/'.$post->imagen);
+         }
+         try{
+
+            $eliminarUsuario = $post->delete();
+            $bug = 0;
+        }
+        catch(\Exception $e){
+            $bug = $e->errorInfo[1];
+        }
+
+        
 
         if ($eliminarUsuario) {
             return response()->json([

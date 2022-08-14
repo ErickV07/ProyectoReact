@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
         <!-- plugins:css -->
         <link rel="stylesheet" href="{{asset('assets/css/login.css')}}">
+        <link rel="stylesheet" href="{{asset('assets/css/AdminStyles.css')}}">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="{{asset('assets/images/favicon.ico')}}" />
     <link href="{{ asset('assets/global/iziToast/css/iziToast.css') }}" rel="stylesheet">

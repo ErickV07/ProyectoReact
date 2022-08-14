@@ -44,6 +44,19 @@ function EditarUsuario(props) {
         });
     }
 
+    const onFileChange = (e) => {
+        let files = e.target.files;
+        let fileReader = new FileReader();
+        fileReader.readAsDataURL(files[0]);
+ 
+        fileReader.onload = (event) => {
+            setState({
+                ...state,
+                imagen: event.target.result,
+            });
+        }
+    }
+
     const onSubmitHandle = (e) =>{
         e.preventDefault();
         
@@ -152,7 +165,7 @@ function EditarUsuario(props) {
                                             </div>
                                             <input type="text" className="form-control form-control-sm" id="name" name="nombre" placeholder="Nombre" value={state.nombre} onChange={onChangeHandle}/>
                                         </div>
-                                        {simpleValidator.current.message('name', state.nombre, 'required|name')}
+                                        {simpleValidator.current.message('nombre', state.nombre, 'required|string')}
                                     </div>
 
                                     <div className="form-group">
@@ -174,28 +187,22 @@ function EditarUsuario(props) {
                                         <div className="input-group input-group-sm">
                                             <div className="input-group-prepend">
                                                 <span className="input-group-text bg-gradient-success text-white">
-                                                    <i className="mdi mdi-photo"></i>
+                                                    <i className="mdi mdi-shield"></i>
                                                 </span>
                                             </div>
-                                            <input type="text" className="form-control form-control-sm" id="imagen" name="imagen" placeholder="Imagen" value={state.imagen} onChange={onChangeHandle}/>
+                                            <input type="file" className="form-control" onChange={onFileChange} />
+                                            <input
+                                        type="hidden"
+                                        name="imagen"
+                                        value={state.imagen}
+                                    />
                                         </div>
-                                        {simpleValidator.current.message('imagen', state.imagen, '')}
+                                        <div className="input-group input-group-sm">
+                                        </div>
                                     </div>
 
                                     <div className="form-group">
                                         <hr />
-                                    </div>
-
-                                    <div className="form-group">
-                                        <label>Contraseña</label>
-                                        <div className="input-group input-group-sm">
-                                            <div className="input-group-prepend">
-                                                <span className="input-group-text bg-gradient-success text-white">
-                                                    <i className="mdi mdi-currency-usd"></i>
-                                                </span>
-                                            </div>
-                                            <input type="password" className="form-control form-control-sm" id="password" name="password" placeholder="Contra" value={state.password} onChange={onChangeHandle}/>
-                                        </div>
                                     </div>
 
 

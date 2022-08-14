@@ -62,7 +62,7 @@ function Dashboard(props) {
                                 <td> {lead.phone} </td>
                                 <td>
                                     <div className="progress">
-                                        <div className="progress-bar bg-gradient-success" role="progressbar" style={{width: lead.progress+'%'}} aria-valuenow={lead.progress} aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div className="progress-bar bg-gradient-success" role="progressbar" aria-valuenow={lead.progress} aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                 </td>
                             </tr>;
@@ -72,48 +72,48 @@ function Dashboard(props) {
     return (
         <React.Fragment>
 
-<div class="content container-fluid">
-                <div class="row">
-                    <div class="col-xl-4 col-sm-4 col-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="dash-widget-header">
-                                    <span class="dash-widget-icon bg-primary">
-                                        <i class="fe fe-users"></i>
+<div className="content container-fluid">
+                <div className="row">
+                    <div className="col-xl-4 col-sm-4 col-12">
+                        <div className="card">
+                            <div className="card-body">
+                                <div className="dash-widget-header">
+                                    <span className="dash-widget-icon bg-primary">
+                                        <i className="fe fe-users"></i>
                                     </span>
-                                    <div class="dash-count">
-                                        <a href="#" class="count-title">User Count</a>
-                                        <a href="#" class="count"> 10,320</a>
+                                    <div className="dash-count">
+                                        <a href="#" className="count-title">User Count</a>
+                                        <a href="#" className="count"> 10,320</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-4 col-sm-4 col-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="dash-widget-header">
-                                    <span class="dash-widget-icon bg-warning">
-                                        <i class="fe fe-phone"></i>
+                    <div className="col-xl-4 col-sm-4 col-12">
+                        <div className="card">
+                            <div className="card-body">
+                                <div className="dash-widget-header">
+                                    <span className="dash-widget-icon bg-warning">
+                                        <i className="fe fe-phone"></i>
                                     </span>
-                                    <div class="dash-count">
-                                        <a href="#" class="count-title">Call Duration</a>
-                                        <a href="#" class="count"> 14,628</a>
+                                    <div className="dash-count">
+                                        <a href="#" className="count-title">Call Duration</a>
+                                        <a href="#" className="count"> 14,628</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-4 col-sm-4 col-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="dash-widget-header">
-                                    <span class="dash-widget-icon bg-danger">
-                                        <i class="fe fe-comments"></i>
+                    <div className="col-xl-4 col-sm-4 col-12">
+                        <div className="card">
+                            <div className="card-body">
+                                <div className="dash-widget-header">
+                                    <span className="dash-widget-icon bg-danger">
+                                        <i className="fe fe-comments"></i>
                                     </span>
-                                    <div class="dash-count">
-                                        <a href="#" class="count-title">Chat Count</a>
-                                        <a href="#" class="count"> 2,980</a>
+                                    <div className="dash-count">
+                                        <a href="#" className="count-title">Chat Count</a>
+                                        <a href="#" className="count"> 2,980</a>
                                     </div>
                                 </div>
                             </div>

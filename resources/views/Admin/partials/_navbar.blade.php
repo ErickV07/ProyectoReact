@@ -42,7 +42,7 @@
                                 <div class="media d-flex">
                                     <span class="avatar avatar-sm flex-shrink-0">
                                         <img class="avatar-img rounded-circle" alt="User Image"
-                                            src="{{asset('assets/img/profiles/avatar-02.jpg')}}">
+                                            src="#">
                                     </span>
                                     <div class="media-body flex-grow-1">
                                         <p class="noti-details"><span class="noti-title">Carlson Tech</span> has
@@ -58,7 +58,7 @@
                                 <div class="media d-flex">
                                     <span class="avatar avatar-sm flex-shrink-0">
                                         <img class="avatar-img rounded-circle" alt="User Image"
-                                            src="{{asset('assets/img/profiles/avatar-11.jpg')}}">
+                                            src="#">
                                     </span>
                                     <div class="media-body flex-grow-1">
                                         <p class="noti-details"><span class="noti-title">International Software
@@ -71,28 +71,13 @@
                             </a>
                         </li>
                         <li class="notification-message">
-                            <a href="#">
-                                <div class="media d-flex">
-                                    <span class="avatar avatar-sm flex-shrink-0">
-                                        <img class="avatar-img rounded-circle" alt="User Image"
-                                            src="{{asset('assets/img/profiles/avatar-17.jpg')}}">
-                                    </span>
-                                    <div class="media-body flex-grow-1">
-                                        <p class="noti-details"><span class="noti-title">John Hendry</span> sent
-                                            a cancellation request <span class="noti-title">Apple iPhone
-                                                XR</span></p>
-                                        <p class="noti-time"><span class="notification-time">8 mins ago</span>
-                                        </p>
-                                    </div>
-                                </div>
-                            </a>
                         </li>
                         <li class="notification-message">
                             <a href="#">
                                 <div class="media d-flex">
                                     <span class="avatar avatar-sm flex-shrink-0">
                                         <img class="avatar-img rounded-circle" alt="User Image"
-                                            src="{{asset('assets/img/profiles/avatar-13.jpg')}}">
+                                            src="#">
                                     </span>
                                     <div class="media-body flex-grow-1">
                                         <p class="noti-details"><span class="noti-title">Mercury Software
@@ -115,13 +100,13 @@
 
         <li class="nav-item dropdown has-arrow">
             <a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
-                <span class="user-img"><img class="rounded-circle" src="{{asset(Auth::user()->imagen)}}"
+                <span class="user-img"><img class="rounded-circle" src="{{ asset('/assets/img/profiles/' . Auth::user()->imagen) }}""
                         width="31" alt="Seema Sisty"></span>
             </a>
             <div class="dropdown-menu">
                 <div class="user-header">
                     <div class="avatar avatar-sm">
-                        <img src="{{asset(Auth::user()->imagen)}}" alt="User Image"
+                        <img src="{{ asset('/assets/img/profiles/' . Auth::user()->imagen) }}" alt="User Image"
                             class="avatar-img rounded-circle">
                     </div>
                     <div class="user-text">
@@ -131,7 +116,10 @@
                 </div>
                 <a class="dropdown-item" href="general.html">My Perfil</a>
                 <a class="dropdown-item" href="general.html">Configuracion</a>
-                <a class="dropdown-item" href="/logout">Salir</a>
+                <form action="{{ route('logout') }}" method="post">
+                    @csrf
+                    <button class="dropdown-item" type="submit">Salir</button>
+             </form>
             </div>
         </li>
 
