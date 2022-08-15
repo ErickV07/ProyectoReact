@@ -17,6 +17,7 @@ function EditarUsuario(props) {
         tipo_usuario: props.location.state.lead.tipo_usuario ? props.location.state.lead.tipo_usuario : '',
         imagen: props.location.state.lead.imagen ? props.location.state.lead.imagen : '',
         password: props.location.state.lead.password ? props.location.state.lead.password : '',
+        srcPrevImg: '/assets/img/profiles/' + props.location.state.lead.imagen,
         loading: false,
         authUser: props.authUserProp
     });
@@ -42,6 +43,20 @@ function EditarUsuario(props) {
             ...state,
             [name] : value
         });
+    }
+
+    const onFileChange = (e) => {
+        let files = e.target.files;
+        let fileReader = new FileReader();
+        fileReader.readAsDataURL(files[0]);
+ 
+        fileReader.onload = (event) => {
+            setState({
+                ...state,
+                imagen: event.target.result,
+                srcPrevImg: event.target.result,
+            });
+        }
     }
 
     const onSubmitHandle = (e) =>{
@@ -150,9 +165,9 @@ function EditarUsuario(props) {
                                                     <i className="mdi mdi-user"></i>
                                                 </span>
                                             </div>
-                                            <input type="text" className="form-control form-control-sm" id="name" name="nombre" placeholder="Nombre" value={state.nombre} onChange={onChangeHandle}/>
+                                            <input type="text" className="form-control form-control-sm input-text" id="name" name="nombre" placeholder="Nombre" value={state.nombre} onChange={onChangeHandle}/>
                                         </div>
-                                        {simpleValidator.current.message('name', state.nombre, 'required|name')}
+                                        {simpleValidator.current.message('nombre', state.nombre, 'required|string')}
                                     </div>
 
                                     <div className="form-group">
@@ -163,7 +178,7 @@ function EditarUsuario(props) {
                                                     <i className="mdi mdi-email"></i>
                                                 </span>
                                             </div>
-                                            <input type="text" className="form-control form-control-sm" id="email" name="email" placeholder="Email" value={state.email} onChange={onChangeHandle}/>
+                                            <input type="text" className="form-control form-control-sm input-text" id="email" name="email" placeholder="Email" value={state.email} onChange={onChangeHandle}/>
                                         </div>
                                         {simpleValidator.current.message('email', state.email, 'required|email')}
                                     </div>
@@ -174,27 +189,29 @@ function EditarUsuario(props) {
                                         <div className="input-group input-group-sm">
                                             <div className="input-group-prepend">
                                                 <span className="input-group-text bg-gradient-success text-white">
-                                                    <i className="mdi mdi-photo"></i>
+                                                    <i className="mdi mdi-shield"></i>
                                                 </span>
                                             </div>
-                                            <input type="text" className="form-control form-control-sm" id="imagen" name="imagen" placeholder="Imagen" value={state.imagen} onChange={onChangeHandle}/>
+                                            <input type="file" className="form-control input-text input-file" onChange={onFileChange} />
+                                            <input
+                                        type="hidden"
+                                        name="imagen"
+                                        value={state.imagen}
+                                    />
                                         </div>
-                                        {simpleValidator.current.message('imagen', state.imagen, '')}
-                                    </div>
-
-                                    <div className="form-group">
-                                        <hr />
-                                    </div>
-
-                                    <div className="form-group">
-                                        <label>Contraseña</label>
                                         <div className="input-group input-group-sm">
-                                            <div className="input-group-prepend">
-                                                <span className="input-group-text bg-gradient-success text-white">
-                                                    <i className="mdi mdi-currency-usd"></i>
-                                                </span>
-                                            </div>
-                                            <input type="password" className="form-control form-control-sm" id="password" name="password" placeholder="Contra" value={state.password} onChange={onChangeHandle}/>
+                                        </div>
+                                    </div>
+                                    <div className="form-group">
+                                        <div className="input-group input-group-sm img-preview">
+                                            <img
+                                                className="Preview-img"
+                                                src={state.srcPrevImg}
+                                                accept="image/png, image/jpg, image/gif, image/jpeg"
+                                                alt=""
+                                                width="200px"
+                                                height="200px"
+                                            />
                                         </div>
                                     </div>
 
@@ -207,7 +224,7 @@ function EditarUsuario(props) {
                                                     <i className="mdi mdi-clipboard-alert"></i>
                                                 </span>
                                             </div>
-                                            <select className="form-control form-control-sm" id="tipo_usuario" name="tipo_usuario" value={state.tipo_usuario} onChange={onChangeHandle}>
+                                            <select className="form-control form-control-sm input-text" id="tipo_usuario" name="tipo_usuario" value={state.tipo_usuario} onChange={onChangeHandle}>
                                                 <option value="SuperAdmin">Super Admin</option>
                                                 <option value="Admin" >Admin</option>
                                                 <option value="User" >Usuario</option>

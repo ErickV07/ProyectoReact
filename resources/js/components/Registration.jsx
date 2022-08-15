@@ -9,7 +9,7 @@ class Registration extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            name: '',
+            nombre: '',
             email: '',
             password: '',
             password_confirmation: '',
@@ -46,7 +46,7 @@ class Registration extends Component {
     }
 
     componentDidMount() {
-        document.title = 'Registration';
+        document.title = 'Registro';
     }
 
     onChangeHandle = (e) =>{
@@ -136,11 +136,11 @@ class Registration extends Component {
                         <div className="brand-logo">
                             <h1 className="text-center" style={{color: '#da8cff'}}>{global.variables.site_name}</h1>
                         </div>
-                        <h4>New here?</h4>
+                        <h4>Nueva cuenta</h4>
                         <form className="pt-3" ref={c => { this.form = c }} onSubmit={this.onSubmitHandle}>
                             <div className="form-group">
-                                <input type="text" className="form-control form-control-lg" name="name" id="name" placeholder="Full Name" value={this.state.name} onChange={this.onChangeHandle}/>
-                                {this.validator.message('full name', this.state.name, 'required', {
+                                <input type="text" className="form-control form-control-lg" name="nombre" id="nombre" placeholder="Nombre" value={this.state.nombre} onChange={this.onChangeHandle}/>
+                                {this.validator.message('full name', this.state.nombre, 'required', {
                                     className: 'small text-danger custom-class'
                                 })}
                             </div>
@@ -149,17 +149,17 @@ class Registration extends Component {
                                 {this.validator.message('email', this.state.email, 'required|email')}
                             </div>
                             <div className="form-group">
-                                <input type="password" className="form-control form-control-lg" name="password" id="password" placeholder="Password" value={this.state.password} onChange={this.onChangeHandle}/>
+                                <input type="password" className="form-control form-control-lg" name="password" id="password" placeholder="Contraseña" value={this.state.password} onChange={this.onChangeHandle}/>
                                 {this.validator.message('password', this.state.password, 'required|customShortPassword')}
                             </div>
                             <div className="form-group">
-                                <input type="password" className="form-control form-control-lg" name="password_confirmation" id="password_confirmation" placeholder="Confirm Password" value={this.state.password_confirmation} onChange={this.onChangeHandle}/>
+                                <input type="password" className="form-control form-control-lg" name="password_confirmation" id="password_confirmation" placeholder="Confirme contraseña" value={this.state.password_confirmation} onChange={this.onChangeHandle}/>
                                 {this.validator.message('confirm password', this.state.password_confirmation, 'required|confirmPassword:'+this.state.password)}
                             </div>
                             <div className="mt-3">
-                                <button type="submit" className="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn" >SIGN UP</button>
+                                <button type="submit" className="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn" >REGISTRARSE</button>
                             </div>
-                            <div className="text-center mt-4 font-weight-light"> Already have an account? <Link to='/login' className="text-primary">Login</Link>
+                            <div className="text-center mt-4 font-weight-light"> Ya tienes cuenta? <Link to='/login' className="text-primary">Iniciar Sesion</Link>
                             </div>
                         </form>
                     </div>

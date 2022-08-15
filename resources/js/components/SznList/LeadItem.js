@@ -13,23 +13,7 @@ class LeadItem extends Component {
     render() {
         return (
             <React.Fragment>
-                <div className="table-responsive">
-                    <table className="datatable table table-stripped">
-                        <thead>
-                            <tr>
-                                <th>Nombre</th>
-                                <th>Email</th>
-                                <th>Celular</th>
-                                <th>Direccion</th>
-                                <th>Descripcion</th>
-                                <th>Progreso</th>
-                                <th>Gastos</th>
-                                <th>Neto</th>
-                                <th>Añadido</th>
-                                <th>Funciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
+
                             <tr>
                                 <td>
                                     <Link to={{
@@ -76,15 +60,6 @@ class LeadItem extends Component {
                                     <button type="button" className="btn btn-danger btn-sm btn-upper" onClick={() => this.props.onClickDeleteHandler(this.props.obj.id)}>Eliminar</button>
                                 </td>
                             </tr>
-                        </tbody>
-
-
-                    </table>
-
-                </div>
-
-
-
             </React.Fragment>
         )
     }
