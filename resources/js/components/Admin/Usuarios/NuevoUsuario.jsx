@@ -18,8 +18,7 @@ function NuevoUsuario(props) {
         password: "",
         description: "",
         loading: false,
-        imagen: null,
-        base64URL: "",
+        imagen: "",
         authUser: props.authUserProp,
     });
 
@@ -52,15 +51,14 @@ function NuevoUsuario(props) {
         let files = e.target.files;
         let fileReader = new FileReader();
         fileReader.readAsDataURL(files[0]);
- 
         fileReader.onload = (event) => {
+            console.log(event.target.result);
             setState({
                 ...state,
                 imagen: event.target.result,
             });
-        }
-    }
-
+        };
+    };
 
     const onSubmitHandle = (e) => {
         e.preventDefault();
@@ -70,7 +68,7 @@ function NuevoUsuario(props) {
                 ...state,
                 loading: true,
             });
-           
+
             axios
                 .post("/api/v1/usuario/crear", $(e.target).serialize())
                 .then((response) => {
@@ -78,7 +76,7 @@ function NuevoUsuario(props) {
                         ...state,
                         loading: false,
                     });
-                    
+
                     if (response.data.status == "validation-error") {
                         var errorArray = response.data.message;
                         $.each(errorArray, function (key, errors) {
@@ -178,7 +176,7 @@ function NuevoUsuario(props) {
                                             </div>
                                             <input
                                                 type="text"
-                                                className="form-control form-control-sm"
+                                                className="form-control form-control-sm input-text"
                                                 id="nombre"
                                                 name="nombre"
                                                 placeholder="Nombre"
@@ -203,7 +201,7 @@ function NuevoUsuario(props) {
                                             </div>
                                             <input
                                                 type="text"
-                                                className="form-control form-control-sm"
+                                                className="form-control form-control-sm input-text"
                                                 id="email"
                                                 name="email"
                                                 placeholder="Email"
@@ -223,15 +221,33 @@ function NuevoUsuario(props) {
                                         <div className="input-group input-group-sm">
                                             <div className="input-group-prepend">
                                                 <span className="input-group-text bg-gradient-success text-white">
-                                                    <i className="mdi mdi-shield"></i>
+                                                    <i className="mdi mdi-file-image"></i>
                                                 </span>
                                             </div>
-                                            <input type="file" className="form-control" onChange={onFileChange} />
+
                                             <input
-                                        type="hidden"
-                                        name="imagen"
-                                        value={state.imagen}
-                                    />
+                                                type="file"
+                                                className="form-control form-control-sm input-text input-file"
+                                                onChange={onFileChange}
+                                            />
+
+                                            <input
+                                                type="hidden"
+                                                name="imagen"
+                                                value={state.imagen}
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className="form-group">
+                                        <div className="input-group input-group-sm img-preview">
+                                            <img
+                                                className="Preview-img"
+                                                src={state.imagen}
+                                                accept="image/png, image/jpg, image/gif, image/jpeg"
+                                                alt=""
+                                                width="200px"
+                                                height="200px"
+                                            />
                                         </div>
                                     </div>
 
@@ -245,7 +261,7 @@ function NuevoUsuario(props) {
                                             </div>
                                             <input
                                                 type="password"
-                                                className="form-control form-control-sm"
+                                                className="form-control form-control-sm input-text"
                                                 id="password"
                                                 name="password"
                                                 placeholder="Contraseña"
@@ -264,7 +280,7 @@ function NuevoUsuario(props) {
                                                 </span>
                                             </div>
                                             <select
-                                                className="form-control form-control-sm"
+                                                className="form-control form-control-sm input-text"
                                                 id="tipo_usuario"
                                                 name="tipo_usuario"
                                                 value={state.tipo_usuario}

@@ -4237,10 +4237,10 @@ if (token) {
 
 /***/ }),
 
-/***/ "./resources/js/components/Login.js":
-/*!******************************************!*\
-  !*** ./resources/js/components/Login.js ***!
-  \******************************************/
+/***/ "./resources/js/components/Login.jsx":
+/*!*******************************************!*\
+  !*** ./resources/js/components/Login.jsx ***!
+  \*******************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -4389,7 +4389,7 @@ var Login = /*#__PURE__*/function (_Component) {
   _createClass(Login, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      document.title = 'Login';
+      document.title = 'Iniciar Sesion';
     }
   }, {
     key: "render",
@@ -4421,7 +4421,7 @@ var Login = /*#__PURE__*/function (_Component) {
                 children: __webpack_require__.g.variables.site_name
               })
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h4", {
-              children: "Hello! let's get started"
+              children: "Hola! Introduzca las credenciales"
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("form", {
               className: "pt-3",
               ref: function ref(c) {
@@ -4455,14 +4455,14 @@ var Login = /*#__PURE__*/function (_Component) {
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
                   type: "submit",
                   className: "btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn",
-                  children: "SIGN IN"
+                  children: "ENTRAR"
                 })
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
                 className: "text-center mt-4 font-weight-light",
-                children: [" Don't have an account? ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link, {
-                  to: "/registration",
+                children: [" No tiene cuenta? ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link, {
+                  to: "/registro",
                   className: "text-primary",
-                  children: "Create"
+                  children: "Registrarse"
                 })]
               })]
             })]
@@ -4479,10 +4479,10 @@ var Login = /*#__PURE__*/function (_Component) {
 
 /***/ }),
 
-/***/ "./resources/js/components/Registration.js":
-/*!*************************************************!*\
-  !*** ./resources/js/components/Registration.js ***!
-  \*************************************************/
+/***/ "./resources/js/components/Registration.jsx":
+/*!**************************************************!*\
+  !*** ./resources/js/components/Registration.jsx ***!
+  \**************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -4615,7 +4615,7 @@ var Registration = /*#__PURE__*/function (_Component) {
     });
 
     _this.state = {
-      name: '',
+      nombre: '',
       email: '',
       password: '',
       password_confirmation: '',
@@ -4660,7 +4660,7 @@ var Registration = /*#__PURE__*/function (_Component) {
   _createClass(Registration, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      document.title = 'Registration';
+      document.title = 'Registro';
     }
   }, {
     key: "render",
@@ -4692,7 +4692,7 @@ var Registration = /*#__PURE__*/function (_Component) {
                 children: __webpack_require__.g.variables.site_name
               })
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h4", {
-              children: "New here?"
+              children: "Nueva cuenta"
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("form", {
               className: "pt-3",
               ref: function ref(c) {
@@ -4704,12 +4704,12 @@ var Registration = /*#__PURE__*/function (_Component) {
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
                   type: "text",
                   className: "form-control form-control-lg",
-                  name: "name",
-                  id: "name",
-                  placeholder: "Full Name",
-                  value: this.state.name,
+                  name: "nombre",
+                  id: "nombre",
+                  placeholder: "Nombre",
+                  value: this.state.nombre,
                   onChange: this.onChangeHandle
-                }), this.validator.message('full name', this.state.name, 'required', {
+                }), this.validator.message('full name', this.state.nombre, 'required', {
                   className: 'small text-danger custom-class'
                 })]
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
@@ -4730,7 +4730,7 @@ var Registration = /*#__PURE__*/function (_Component) {
                   className: "form-control form-control-lg",
                   name: "password",
                   id: "password",
-                  placeholder: "Password",
+                  placeholder: "Contrase\xF1a",
                   value: this.state.password,
                   onChange: this.onChangeHandle
                 }), this.validator.message('password', this.state.password, 'required|customShortPassword')]
@@ -4741,7 +4741,7 @@ var Registration = /*#__PURE__*/function (_Component) {
                   className: "form-control form-control-lg",
                   name: "password_confirmation",
                   id: "password_confirmation",
-                  placeholder: "Confirm Password",
+                  placeholder: "Confirme contrase\xF1a",
                   value: this.state.password_confirmation,
                   onChange: this.onChangeHandle
                 }), this.validator.message('confirm password', this.state.password_confirmation, 'required|confirmPassword:' + this.state.password)]
@@ -4750,14 +4750,14 @@ var Registration = /*#__PURE__*/function (_Component) {
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
                   type: "submit",
                   className: "btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn",
-                  children: "SIGN UP"
+                  children: "REGISTRARSE"
                 })
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
                 className: "text-center mt-4 font-weight-light",
-                children: [" Already have an account? ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link, {
+                children: [" Ya tienes cuenta? ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link, {
                   to: "/login",
                   className: "text-primary",
-                  children: "Login"
+                  children: "Iniciar Sesion"
                 })]
               })]
             })]
@@ -4781,7 +4781,7 @@ var Registration = /*#__PURE__*/function (_Component) {
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = __webpack_require__.g.variables = {
-  site_name: 'React Laravel'
+  site_name: 'Proyecto Ingenieria'
 };
 
 /***/ }),
@@ -78117,8 +78117,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
-/* harmony import */ var _components_Login__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Login */ "./resources/js/components/Login.js");
-/* harmony import */ var _components_Registration__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/Registration */ "./resources/js/components/Registration.js");
+/* harmony import */ var _components_Login__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Login */ "./resources/js/components/Login.jsx");
+/* harmony import */ var _components_Registration__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/Registration */ "./resources/js/components/Registration.jsx");
 /* harmony import */ var _variables__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../variables */ "./resources/js/variables.js");
 /* harmony import */ var _variables__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_variables__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
@@ -78188,7 +78188,7 @@ var App = /*#__PURE__*/function (_Component) {
                           path: "/login",
                           component: _components_Login__WEBPACK_IMPORTED_MODULE_2__["default"]
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, {
-                          path: "/registration",
+                          path: "/registro",
                           component: _components_Registration__WEBPACK_IMPORTED_MODULE_3__["default"]
                         })]
                       })

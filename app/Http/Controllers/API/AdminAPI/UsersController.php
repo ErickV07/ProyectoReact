@@ -102,21 +102,17 @@ class UsersController extends Controller
         $user = User::where('api_token',$request['api_token'])->first();
 
         $users = User::where('id',$request['id'])->first();
-
         if (empty($users)) {
             return response()->json([
                 'message' => 'Error al actualizar el usuario',
                 'status' => 'error'
             ]);
         }
-
-
         $validate = Validator::make($request->all(), [
             'nombre' => 'required|string',
             'tipo_usuario' => 'required|string',
             'imagen' => 'string',
             'email' => 'required|email|unique:users,email,' . $users->id . ',id',
-
         ]);
 
         if ($validate->fails()) {
@@ -125,22 +121,18 @@ class UsersController extends Controller
                 'status' => 'validation-error',
             ], 401);
         }
-
-
         $currentImagen = $users->imagen;
-
         if ($request->imagen != $currentImagen) {
             $name = time().'.' . explode('/', explode(':', substr($request->imagen, 0, strpos($request->imagen, ';')))[1])[1];
-
             \Image::make($request->imagen)->save(public_path('/assets/img/profiles/').$name);
             $request->merge(['imagen' => $name]);
-
             $userPhoto = public_path('/assets/img/profiles/') . $currentImagen;
             if (file_exists($userPhoto)) {
                 @unlink($userPhoto);
             }
 
         }
+
         if (!empty($request->password)) {
             $request->merge(['password' => bcrypt($request['password'])]);
         }
@@ -150,8 +142,7 @@ class UsersController extends Controller
             'tipo_usuario' => $request['tipo_usuario'],
             'imagen' => $request['imagen'],
             'email' => $request['email'],
-            'password' => bcrypt($request->password),
-            'api_token' => $request['api_token'],
+            'api_token' => Str::random(80),
         ]);
 
         return response()->json([
@@ -184,8 +175,6 @@ class UsersController extends Controller
         catch(\Exception $e){
             $bug = $e->errorInfo[1];
         }
-
-        
 
         if ($eliminarUsuario) {
             return response()->json([

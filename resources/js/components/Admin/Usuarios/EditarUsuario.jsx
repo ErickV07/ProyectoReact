@@ -17,6 +17,7 @@ function EditarUsuario(props) {
         tipo_usuario: props.location.state.lead.tipo_usuario ? props.location.state.lead.tipo_usuario : '',
         imagen: props.location.state.lead.imagen ? props.location.state.lead.imagen : '',
         password: props.location.state.lead.password ? props.location.state.lead.password : '',
+        srcPrevImg: '/assets/img/profiles/' + props.location.state.lead.imagen,
         loading: false,
         authUser: props.authUserProp
     });
@@ -53,6 +54,7 @@ function EditarUsuario(props) {
             setState({
                 ...state,
                 imagen: event.target.result,
+                srcPrevImg: event.target.result,
             });
         }
     }
@@ -163,7 +165,7 @@ function EditarUsuario(props) {
                                                     <i className="mdi mdi-user"></i>
                                                 </span>
                                             </div>
-                                            <input type="text" className="form-control form-control-sm" id="name" name="nombre" placeholder="Nombre" value={state.nombre} onChange={onChangeHandle}/>
+                                            <input type="text" className="form-control form-control-sm input-text" id="name" name="nombre" placeholder="Nombre" value={state.nombre} onChange={onChangeHandle}/>
                                         </div>
                                         {simpleValidator.current.message('nombre', state.nombre, 'required|string')}
                                     </div>
@@ -176,7 +178,7 @@ function EditarUsuario(props) {
                                                     <i className="mdi mdi-email"></i>
                                                 </span>
                                             </div>
-                                            <input type="text" className="form-control form-control-sm" id="email" name="email" placeholder="Email" value={state.email} onChange={onChangeHandle}/>
+                                            <input type="text" className="form-control form-control-sm input-text" id="email" name="email" placeholder="Email" value={state.email} onChange={onChangeHandle}/>
                                         </div>
                                         {simpleValidator.current.message('email', state.email, 'required|email')}
                                     </div>
@@ -190,7 +192,7 @@ function EditarUsuario(props) {
                                                     <i className="mdi mdi-shield"></i>
                                                 </span>
                                             </div>
-                                            <input type="file" className="form-control" onChange={onFileChange} />
+                                            <input type="file" className="form-control input-text input-file" onChange={onFileChange} />
                                             <input
                                         type="hidden"
                                         name="imagen"
@@ -200,9 +202,17 @@ function EditarUsuario(props) {
                                         <div className="input-group input-group-sm">
                                         </div>
                                     </div>
-
                                     <div className="form-group">
-                                        <hr />
+                                        <div className="input-group input-group-sm img-preview">
+                                            <img
+                                                className="Preview-img"
+                                                src={state.srcPrevImg}
+                                                accept="image/png, image/jpg, image/gif, image/jpeg"
+                                                alt=""
+                                                width="200px"
+                                                height="200px"
+                                            />
+                                        </div>
                                     </div>
 
 
@@ -214,7 +224,7 @@ function EditarUsuario(props) {
                                                     <i className="mdi mdi-clipboard-alert"></i>
                                                 </span>
                                             </div>
-                                            <select className="form-control form-control-sm" id="tipo_usuario" name="tipo_usuario" value={state.tipo_usuario} onChange={onChangeHandle}>
+                                            <select className="form-control form-control-sm input-text" id="tipo_usuario" name="tipo_usuario" value={state.tipo_usuario} onChange={onChangeHandle}>
                                                 <option value="SuperAdmin">Super Admin</option>
                                                 <option value="Admin" >Admin</option>
                                                 <option value="User" >Usuario</option>

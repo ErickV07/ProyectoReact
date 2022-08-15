@@ -24,6 +24,7 @@ Route::get('/clearapp', function () {
 Auth::routes(['verify' => true]);
 
 Route::get('/', [App\Http\Controllers\ClienteController::class, 'index']);
+Route::get('*', [App\Http\Controllers\ClienteController::class, 'index']);
 
 
 //GRUPO DE RUTAS NO PROTEGIDAS
@@ -34,10 +35,10 @@ Route::group(['middleware' => ['guest', 'web']], function () {
   Route::get('/acerca', [App\Http\Controllers\ClienteController::class, 'index']);
   
   Route::get('/login', [App\Http\Controllers\AuthController::class, 'index']);
-  Route::get('/registration', [App\Http\Controllers\AuthController::class, 'index']);
+  Route::get('/registro', [App\Http\Controllers\AuthController::class, 'index']);
 
   Route::post('/login', [App\Http\Controllers\AuthController::class, 'login']);
-  Route::post('/registration', [App\Http\Controllers\AuthController::class, 'signup']);
+  Route::post('/registro', [App\Http\Controllers\AuthController::class, 'signup']);
 
 });
 

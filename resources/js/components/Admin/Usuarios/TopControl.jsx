@@ -41,7 +41,7 @@ function TopControl(props) {
                     </div>
                     <form className="p-2 col-md-4" onSubmit={props.onSubmitQueryHandle}>
                         <div className="input-group">
-                            <input type="search" className="form-control form-control-sm" placeholder="Buscar..." value={props.query} onChange={props.onChangeQueryHandle}/>
+                            <input type="search" className="form-control form-control-sm input-search" placeholder="Buscar..." value={props.query} onChange={props.onChangeQueryHandle}/>
                             <div className="input-group-append">
                                 <button className="btn btn-sm btn-gradient-primary" disabled={props.isLoading ? true : false} type="submit">Buscar</button>
                             </div>

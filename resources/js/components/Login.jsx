@@ -21,7 +21,7 @@ class Login extends Component {
     }
 
     componentDidMount() {
-        document.title = 'Login';
+        document.title = 'Iniciar Sesion';
     }
 
     onChangeHandle = (e) =>{
@@ -111,7 +111,7 @@ class Login extends Component {
                         <div className="brand-logo">
                             <h1 className="text-center" style={{color: '#da8cff'}}>{global.variables.site_name}</h1>
                         </div>
-                        <h4>Hello! let's get started</h4>
+                        <h4>Hola! Introduzca las credenciales</h4>
                         <form className="pt-3" ref={c => { this.form = c }} onSubmit={this.onSubmitHandle}>
                             <div className="form-group">
                                 <input type="text" className="form-control form-control-lg" name="email" id="email" placeholder="Email" value={this.state.email} onChange={this.onChangeHandle}/>
@@ -123,11 +123,11 @@ class Login extends Component {
                             </div>
                             <div className="mt-3">
                                 <button type="submit" className="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn" >
-                                    SIGN IN
+                                    ENTRAR
                                 </button>
                             </div>
 
-                            <div className="text-center mt-4 font-weight-light"> Don't have an account? <Link to='/registration' className="text-primary">Create</Link >
+                            <div className="text-center mt-4 font-weight-light"> No tiene cuenta? <Link to='/registro' className="text-primary">Registrarse</Link >
                             </div>
                         </form>
                     </div>

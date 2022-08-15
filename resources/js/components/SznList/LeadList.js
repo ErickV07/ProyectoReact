@@ -229,9 +229,9 @@ function LeadList(props) {
 
     const dataTable = () => {
         return isLoading ? skeletonLoader() :
-            (leads.length == 0 ? <div className="text-center text-gray">
-                <div className="p-3 font-weight-bold">No hay datos</div>
-            </div> :
+            (leads.length == 0 ? <td className="text-center text-gray">
+                <td className="p-3 font-weight-bold">No hay datos</td>
+            </td> :
 
                 leads.map((lead, i) => {
                     return <LeadItem onClickDeleteHandler={onClickDeleteHandler} obj={lead} key={i} />;

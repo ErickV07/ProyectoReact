@@ -10,7 +10,7 @@ import TopControl from './TopControl'
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 
-function LeadList(props) {
+function UserList(props) {
     const [users, setUsers] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
@@ -229,12 +229,14 @@ function LeadList(props) {
 
     const dataTable = () => {
         return isLoading ? skeletonLoader() : 
-        (users.length == 0 ? <div className="text-center text-gray">
-                                <div className="p-3 font-weight-bold">No Data Available</div>
-                            </div> : 
-        users.map((lead, i) => {
-            return <UsuarioItem onClickDeleteHandler={onClickDeleteHandler} obj={lead} key={i} />;
-        }));
+        (users.length == 0 ? <tr className="text-center text-gray">
+                                <td className="p-3 font-weight-bold"><div> No hay datos</div></td>
+                            </tr> : 
+        users.map((user, i) => {
+            return <UsuarioItem onClickDeleteHandler={onClickDeleteHandler} obj={user} key={i} />;
+        })
+
+        );
     }
 
     return (
@@ -253,22 +255,24 @@ function LeadList(props) {
                         onChangeQueryHandle={onChangeQueryHandle}
                         query={state.query}
                     />
-                    <div className='szn-list-wrapper bg-gradient-light'>
+                    <div className='szn-list-wrapper'>
                     <div className="table-responsive">
-                            <table className="datatable table table-stripped">
-                                <thead>
-                                    <tr>
-                                        <th>Nombre</th>
-                                        <th>Rol</th>
-                                        <th>Email</th>
-                                        <th>Foto</th>
-                                        <th>Funciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {dataTable()}
-                                </tbody>
-                            </table>
+                    <table className="datatable table table-stripped">
+                <thead>
+                    <tr className="titleTable">
+                        <th>Nombre</th>
+                        <th>Rol</th>
+                        <th>Email</th>
+                        <th>Foto</th>
+                        <th>Funciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {dataTable()}
+                </tbody>
+            </table>
+                                   
+                              
                         </div>
                     </div>
                     <div className="pt-3 pb-3">
@@ -317,4 +321,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(LeadList)
+export default connect(mapStateToProps, mapDispatchToProps)(UserList)

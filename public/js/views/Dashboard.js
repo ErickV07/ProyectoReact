@@ -4767,6 +4767,7 @@ function EditarUsuario(props) {
     tipo_usuario: props.location.state.lead.tipo_usuario ? props.location.state.lead.tipo_usuario : '',
     imagen: props.location.state.lead.imagen ? props.location.state.lead.imagen : '',
     password: props.location.state.lead.password ? props.location.state.lead.password : '',
+    srcPrevImg: '/assets/img/profiles/' + props.location.state.lead.imagen,
     loading: false,
     authUser: props.authUserProp
   }),
@@ -4806,7 +4807,8 @@ function EditarUsuario(props) {
 
     fileReader.onload = function (event) {
       setState(_objectSpread(_objectSpread({}, state), {}, {
-        imagen: event.target.result
+        imagen: event.target.result,
+        srcPrevImg: event.target.result
       }));
     };
   };
@@ -4934,7 +4936,7 @@ function EditarUsuario(props) {
                       })
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("input", {
                       type: "text",
-                      className: "form-control form-control-sm",
+                      className: "form-control form-control-sm input-text",
                       id: "name",
                       name: "nombre",
                       placeholder: "Nombre",
@@ -4958,7 +4960,7 @@ function EditarUsuario(props) {
                       })
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("input", {
                       type: "text",
-                      className: "form-control form-control-sm",
+                      className: "form-control form-control-sm input-text",
                       id: "email",
                       name: "email",
                       placeholder: "Email",
@@ -4982,7 +4984,7 @@ function EditarUsuario(props) {
                       })
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("input", {
                       type: "file",
-                      className: "form-control",
+                      className: "form-control input-text input-file",
                       onChange: onFileChange
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("input", {
                       type: "hidden",
@@ -4994,7 +4996,17 @@ function EditarUsuario(props) {
                   })]
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
                   className: "form-group",
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("hr", {})
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
+                    className: "input-group input-group-sm img-preview",
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("img", {
+                      className: "Preview-img",
+                      src: state.srcPrevImg,
+                      accept: "image/png, image/jpg, image/gif, image/jpeg",
+                      alt: "",
+                      width: "200px",
+                      height: "200px"
+                    })
+                  })
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
                   className: "form-group",
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("label", {
@@ -5010,7 +5022,7 @@ function EditarUsuario(props) {
                         })
                       })
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("select", {
-                      className: "form-control form-control-sm",
+                      className: "form-control form-control-sm input-text",
                       id: "tipo_usuario",
                       name: "tipo_usuario",
                       value: state.tipo_usuario,
@@ -5128,7 +5140,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-function LeadList(props) {
+function UserList(props) {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
       _useState2 = _slicedToArray(_useState, 2),
       users = _useState2[0],
@@ -5529,16 +5541,18 @@ function LeadList(props) {
   };
 
   var dataTable = function dataTable() {
-    return isLoading ? skeletonLoader() : users.length == 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
+    return isLoading ? skeletonLoader() : users.length == 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("tr", {
       className: "text-center text-gray",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("td", {
         className: "p-3 font-weight-bold",
-        children: "No Data Available"
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
+          children: " No hay datos"
+        })
       })
-    }) : users.map(function (lead, i) {
+    }) : users.map(function (user, i) {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_UsuarioItem__WEBPACK_IMPORTED_MODULE_1__["default"], {
         onClickDeleteHandler: onClickDeleteHandler,
-        obj: lead
+        obj: user
       }, i);
     });
   };
@@ -5560,13 +5574,14 @@ function LeadList(props) {
           onChangeQueryHandle: onChangeQueryHandle,
           query: state.query
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
-          className: "szn-list-wrapper bg-gradient-light",
+          className: "szn-list-wrapper",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
             className: "table-responsive",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("table", {
               className: "datatable table table-stripped",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("thead", {
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("tr", {
+                  className: "titleTable",
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("th", {
                     children: "Nombre"
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("th", {
@@ -5637,7 +5652,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   };
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_3__.connect)(mapStateToProps, mapDispatchToProps)(LeadList));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_3__.connect)(mapStateToProps, mapDispatchToProps)(UserList));
 
 /***/ }),
 
@@ -5705,8 +5720,7 @@ function NuevoUsuario(props) {
     password: "",
     description: "",
     loading: false,
-    imagen: null,
-    base64URL: "",
+    imagen: "",
     authUser: props.authUserProp
   }),
       _useState2 = _slicedToArray(_useState, 2),
@@ -5744,6 +5758,7 @@ function NuevoUsuario(props) {
     fileReader.readAsDataURL(files[0]);
 
     fileReader.onload = function (event) {
+      console.log(event.target.result);
       setState(_objectSpread(_objectSpread({}, state), {}, {
         imagen: event.target.result
       }));
@@ -5869,7 +5884,7 @@ function NuevoUsuario(props) {
                       })
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("input", {
                       type: "text",
-                      className: "form-control form-control-sm",
+                      className: "form-control form-control-sm input-text",
                       id: "nombre",
                       name: "nombre",
                       placeholder: "Nombre",
@@ -5893,7 +5908,7 @@ function NuevoUsuario(props) {
                       })
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("input", {
                       type: "text",
-                      className: "form-control form-control-sm",
+                      className: "form-control form-control-sm input-text",
                       id: "email",
                       name: "email",
                       placeholder: "Email",
@@ -5912,12 +5927,12 @@ function NuevoUsuario(props) {
                       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("span", {
                         className: "input-group-text bg-gradient-success text-white",
                         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("i", {
-                          className: "mdi mdi-shield"
+                          className: "mdi mdi-file-image"
                         })
                       })
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("input", {
                       type: "file",
-                      className: "form-control",
+                      className: "form-control form-control-sm input-text input-file",
                       onChange: onFileChange
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("input", {
                       type: "hidden",
@@ -5925,6 +5940,19 @@ function NuevoUsuario(props) {
                       value: state.imagen
                     })]
                   })]
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
+                  className: "form-group",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
+                    className: "input-group input-group-sm img-preview",
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("img", {
+                      className: "Preview-img",
+                      src: state.imagen,
+                      accept: "image/png, image/jpg, image/gif, image/jpeg",
+                      alt: "",
+                      width: "200px",
+                      height: "200px"
+                    })
+                  })
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
                   className: "form-group",
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("label", {
@@ -5941,7 +5969,7 @@ function NuevoUsuario(props) {
                       })
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("input", {
                       type: "password",
-                      className: "form-control form-control-sm",
+                      className: "form-control form-control-sm input-text",
                       id: "password",
                       name: "password",
                       placeholder: "Contrase\xF1a",
@@ -5964,7 +5992,7 @@ function NuevoUsuario(props) {
                         })
                       })
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("select", {
-                      className: "form-control form-control-sm",
+                      className: "form-control form-control-sm input-text",
                       id: "tipo_usuario",
                       name: "tipo_usuario",
                       value: state.tipo_usuario,
@@ -6133,7 +6161,7 @@ function TopControl(props) {
             className: "input-group",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
               type: "search",
-              className: "form-control form-control-sm",
+              className: "form-control form-control-sm input-search",
               placeholder: "Buscar...",
               value: props.query,
               onChange: props.onChangeQueryHandle
@@ -6201,22 +6229,22 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
-var LeadItem = /*#__PURE__*/function (_Component) {
-  _inherits(LeadItem, _Component);
+var UserItem = /*#__PURE__*/function (_Component) {
+  _inherits(UserItem, _Component);
 
-  var _super = _createSuper(LeadItem);
+  var _super = _createSuper(UserItem);
 
-  function LeadItem(props) {
+  function UserItem(props) {
     var _this;
 
-    _classCallCheck(this, LeadItem);
+    _classCallCheck(this, UserItem);
 
     _this = _super.call(this, props);
     _this.state = {};
     return _this;
   }
 
-  _createClass(LeadItem, [{
+  _createClass(UserItem, [{
     key: "componentDidMount",
     value: function componentDidMount() {}
   }, {
@@ -6226,6 +6254,7 @@ var LeadItem = /*#__PURE__*/function (_Component) {
 
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("tr", {
+          className: "elementTable",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
             children: this.props.obj.nombre
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
@@ -6265,10 +6294,10 @@ var LeadItem = /*#__PURE__*/function (_Component) {
     }
   }]);
 
-  return LeadItem;
+  return UserItem;
 }(react__WEBPACK_IMPORTED_MODULE_0__.Component);
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (LeadItem);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (UserItem);
 
 /***/ }),
 
@@ -7367,9 +7396,9 @@ function LeadList(props) {
   };
 
   var dataTable = function dataTable() {
-    return isLoading ? skeletonLoader() : leads.length == 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
+    return isLoading ? skeletonLoader() : leads.length == 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("td", {
       className: "text-center text-gray",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("td", {
         className: "p-3 font-weight-bold",
         children: "No hay datos"
       })
@@ -8268,7 +8297,7 @@ var rootReducer = (0,redux__WEBPACK_IMPORTED_MODULE_2__.combineReducers)({
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = __webpack_require__.g.variables = {
-  site_name: 'React Laravel'
+  site_name: 'Proyecto Ingenieria'
 };
 
 /***/ }),

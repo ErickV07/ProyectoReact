@@ -3,11 +3,10 @@
           <div class="sidebar-inner slimscroll">
               <div id="sidebar-menu" class="sidebar-menu">
                   <ul>
-                      <li class="menu-title">
-                      </li>
-                      <li class="active">
+                      <li class="menuOption">
                           <a href="/dashboard"><i class="fe fe-home"></i> <span>Dashboard</span></a>
                       </li>
+                      
                       @if(Auth::check() && Auth::user()->tipo_usuario == "admin" || Auth::user()->tipo_usuario == "SuperAdmin")
                       <li class="submenu">
                           <a href="#"><i class="fe fe-users"></i> <span> Usuarios</span> <span
@@ -21,12 +20,12 @@
                       <li class="submenu">
                           <a href="#"><i class="fe fe-sync"></i> <span> History </span> <span
                                   class="menu-arrow"></span></a>
-                          <ul style="display: none;">
+                          <ul class="items-submenu">
                               <li><a href="#"> Call History </a></li>
                               <li><a href="#"> Group History </a></li>
                           </ul>
                       </li>
-                      <li>
+                      <li class="submenu">
                           <a href="#"><i class="fe fe-file"></i> <span>Blank Page</span></a>
                       </li>
 

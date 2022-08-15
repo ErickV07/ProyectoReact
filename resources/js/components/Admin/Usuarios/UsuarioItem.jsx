@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import moment from 'moment';
 import { Link } from 'react-router-dom';
 
-class LeadItem extends Component {
+class UserItem extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -14,7 +14,7 @@ class LeadItem extends Component {
         return (
             <React.Fragment>
 
-                            <tr>
+                            <tr className='elementTable'>
                                 <td>
                                 {this.props.obj.nombre}
                                 </td>
@@ -42,4 +42,4 @@ class LeadItem extends Component {
     }
 }
 
-export default LeadItem
+export default UserItem
